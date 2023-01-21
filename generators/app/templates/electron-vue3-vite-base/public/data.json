@@ -1,0 +1,18 @@
+{
+  "hello": {
+    "msg": "这是测试数据",
+    "status": 200
+  },
+  "user": [
+    {
+      "id": 1,
+      "name": "lihua",
+      "age": 18
+    },
+    {
+      "name": "zs",
+      "age": 20,
+      "id": 2
+    }
+  ]
+}

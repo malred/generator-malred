@@ -1,0 +1,1 @@
+json-server data.json -w data.json -p 9000

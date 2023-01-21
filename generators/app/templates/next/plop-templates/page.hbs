@@ -1,0 +1,29 @@
+import Head from "next/head";
+import styles from './{{name}}.module.css' 
+// 接收props
+export default function {{name}}({data}) {
+    return <>
+        <Head>
+            <title>{{name}} page</title>
+        </Head>
+        <div className={styles.{{name}} }>{{name}} page</div>
+        <div>{data}</div>
+    </>
+}
+// 发送http请求的代码,这里的接口是json-server起的
+export async function getStaticProps( ) {
+    // 从后端获取数据
+    let result = await fetch('http://localhost:9090/test?id=1',{
+        headers: {
+            // Accept: 'application/vnd.dpexpo.v1+json' //设置请求头
+        },
+        method: 'get',
+    })
+    let res = await result.json() //必须通过此方法才可返回数据
+    console.log(res)
+    return {
+        props: {
+            data: res[0] //props值传到上面的render函数中
+        }
+    }
+}  

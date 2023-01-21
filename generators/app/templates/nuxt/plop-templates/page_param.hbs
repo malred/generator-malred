@@ -1,0 +1,18 @@
+<template>
+  <div>
+    <!-- http://localhost:3000/{{name}}/{{param}} -->
+    <h1>{{name}} {{param}} page</h1>
+    <!--  拿到路由参数  -->
+    <p>\{{ $route.params.id }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "{{name}}_{{param}}"
+}
+</script>
+
+<style scoped>
+
+</style>

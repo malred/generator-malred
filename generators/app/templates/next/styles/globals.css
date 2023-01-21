@@ -1,0 +1,11 @@
+body {
+    font-size: 16px;
+    font-weight: bold;
+    background: #ccc;
+}
+/* 这个是给link标签加的样式 */
+.link {
+    color: gold;
+    font-size: 20px;
+    text-decoration: none;
+}
