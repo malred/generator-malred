@@ -29,7 +29,7 @@ module.exports = appInfo => {
   config.mongoose = {
     client: {
       // 连接数据库
-      url: 'mongodb://127.0.0.1/youtube-clone',
+      url: 'mongodb://127.0.0.1/<%= projname %>',
       options: { useNewUrlParser: true, useUnifiedTopology: true },
       plugins: []
     }

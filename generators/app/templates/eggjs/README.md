@@ -1,5 +1,4 @@
-# 
-
+# <%= projname %> 
 
 
 ## QuickStart

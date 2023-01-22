@@ -60,7 +60,7 @@ class UserService extends Service {
         return jwt.verify(token, this.app.config.jwt.secret)
     }
     /**
-     * 
+     * 更新user
      * @param {更新的数据} data 
      * @returns 返回更新的结果
      */
@@ -71,61 +71,6 @@ class UserService extends Service {
             // 默认返回更新前的数据,设置这个返回更新后的数据
             new: true,
         })
-    }
-    /**
-     * 订阅频道
-     * @param {当前用户id} userId 
-     * @param {被关注的用户id} channelId 
-     * @returns 被关注的用户的信息
-     */
-    async subscribe(userId, channelId) {
-        // 获取Subscription数据模型
-        const { Subscription, User } = this.app.model
-        // 1,检查是否已经订阅
-        const record = await Subscription.findOne({
-            // 传递参数
-            user: userId,
-            channel: channelId
-        })
-        const user = await User.findById(channelId)
-        // 2,没有订阅->添加订阅
-        if (!record) {
-            await new Subscription({
-                user: userId,
-                channel: channelId,
-            }).save()
-            // 更新用户的订阅数量
-            user.subscribersCount++
-            await user.save() // 更新到数据库中
-        }
-        // 3,返回用户信息
-        return user
-    }
-    /**
-     * 取消订阅
-     * @param {当前用户id} userId 
-     * @param {被取消订阅的用户id} channelId 
-     * @returns 被取消订阅的用户的信息
-     */
-    async unsubscribe(userId, channelId) {
-        // 获取Subscription数据模型
-        const { Subscription, User } = this.app.model
-        // 1,检查是否已经订阅
-        const record = await Subscription.findOne({
-            // 传递参数
-            user: userId,
-            channel: channelId
-        })
-        const user = await User.findById(channelId)
-        // 2,没有订阅->添加订阅
-        if (record) {
-            await record.remove() // 删除订阅记录
-            // 更新用户的订阅数量
-            user.subscribersCount--
-            await user.save() // 更新到数据库中
-        }
-        // 3,返回用户信息
-        return user
-    }
+    } 
 }
 module.exports = UserService

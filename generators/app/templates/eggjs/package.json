@@ -1,5 +1,5 @@
 {
-  "name": "youtubeclone-backend",
+  "name": "<%= projname %>",
   "version": "1.0.0",
   "description": "",
   "private": true,

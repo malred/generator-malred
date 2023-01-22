@@ -100,8 +100,31 @@ function GetTemplatePath(type) {
                 'nuxt/README.md',
             ]
             break
-        case 'eggjs':
-            path = []
+        case 'egg-ts':
+            path = [
+                'eggjs/app/controller/home.js',
+                'eggjs/app/controller/user.js',
+                'eggjs/app/extend/application.js',
+                'eggjs/app/extend/helper.js',
+                'eggjs/app/middleware/auth.js',
+                'eggjs/app/middleware/error_handler.js',
+                'eggjs/app/model/user.js',
+                'eggjs/app/public/1.txt',
+                'eggjs/app/service/user.js',
+                'eggjs/app/router.js',
+                'eggjs/config/config.default.js',
+                'eggjs/config/config.local.js',
+                'eggjs/config/config.prod.js',
+                'eggjs/config/plugin.js',
+                'eggjs/config/secret.js',
+                'eggjs/.eslintignore',
+                'eggjs/.eslintrc',
+                'eggjs/.gitignore',
+                'eggjs/jsconfig.json',
+                'eggjs/package-lock.json',
+                'eggjs/package.json',
+                'eggjs/README.md'
+            ]
             break
         case 'single-spa':
             path = [
@@ -180,7 +203,7 @@ module.exports = class extends Generator {
             {
                 type: 'input',
                 name: 'type',
-                message: 'which type of project?(single-spa,electron-vue3,next,nuxt)',
+                message: 'which type of project?(single-spa,electron-vue3,next,nuxt,egg-ts)',
                 default: 'none'
             }
         ]).then(answers => {
@@ -201,10 +224,10 @@ module.exports = class extends Generator {
             templates = GetTemplatePath('next')
         } else if (this.answers.type === 'nuxt') {
             templates = GetTemplatePath('nuxt')
-        } else if (this.answers.type === 'eggjs') {
-            templates = GetTemplatePath('eggjs')
         } else if (this.answers.type === 'single-spa') {
             templates = GetTemplatePath('single-spa')
+        } else if (this.answers.type === 'egg-ts') {
+            templates = GetTemplatePath('egg-ts')
         }
         // 把每一个文件都通过模板转换到目标路径
         templates.forEach(item => {
