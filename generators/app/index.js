@@ -1,7 +1,7 @@
 const Generator = require('yeoman-generator')
 /**
  * 输入项目类型,获取对应模板文件的路径
- * @param {项目类型} type 
+ * @param {项目类型} type
  */
 function GetTemplatePath(type) {
     let path = []
@@ -109,7 +109,7 @@ function GetTemplatePath(type) {
                 'eggjs/app/middleware/auth.js',
                 'eggjs/app/middleware/error_handler.js',
                 'eggjs/app/model/user.js',
-                'eggjs/app/public/1.txt',
+                'eggjs/app/public/plop.bat',
                 'eggjs/app/service/user.js',
                 'eggjs/app/router.js',
                 'eggjs/config/config.default.js',
@@ -117,12 +117,16 @@ function GetTemplatePath(type) {
                 'eggjs/config/config.prod.js',
                 'eggjs/config/plugin.js',
                 'eggjs/config/secret.js',
+                'eggjs/plop-templates/controller.hbs',
+                'eggjs/plop-templates/model.hbs',
+                'eggjs/plop-templates/service.hbs',
                 'eggjs/.eslintignore',
                 'eggjs/.eslintrc',
                 'eggjs/.gitignore',
                 'eggjs/jsconfig.json',
                 'eggjs/package-lock.json',
                 'eggjs/package.json',
+                'eggjs/plopfile.js',
                 'eggjs/README.md'
             ]
             break

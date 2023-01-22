@@ -1,0 +1,95 @@
+const { Controller } = require('egg'); 
+class {{name}}Controller extends Controller {
+    // !!! 把这段添加到router.js
+    router
+        .get('/{{name}}/all', controller.{{name}}.get_{{name}})
+        .post('/{{name}}/add', controller.{{name}}.create_{{name}})
+        .delete('/{{name}}/del', controller.{{name}}.delete_{{name}})
+        .put('/{{name}}/upt', controller.{{name}}.update_{{name}})
+    /**
+     * 新增 {{name}}
+     */ 
+    async create_{{name}}() {
+        // 请求体
+        const body = this.ctx.request.body
+        // 数据校验
+        this.ctx.validate({
+            // 默认是必填项
+            // 字段名: { type: '字段类型',required: true或false}, 
+        },body)
+        const {{name}}Service = this.service.{{name}} 
+        // 不能重复的话,做判断 
+        // let one = await {{name}}Service.findBy字段名(body.字段名) 
+        // if (one !== null) {
+        //     // 抛异常
+        //     this.ctx.throw(422, `该数据已存在` + body.字段名)
+        // }  
+        const {{name}} = await {{name}}Service.create_{{name}}(body) 
+        // 返回响应
+        this.ctx.body = {
+            {{name}} 
+        }
+    } 
+    /**
+     * 查询所有 {{name}}
+     */
+    async get_{{name}}() { 
+        const {{name}}Service = this.service.{{name}}
+        let {{name}} = await {{name}}Service.findAll() 
+        this.ctx.body = {
+            {{name}} 
+        }
+    }
+    /**
+     * 更新 {{name}} 
+     */
+    async update_{{name}}() { 
+        // 请求体
+        let body = this.ctx.request.body
+        // 数据校验
+        this.ctx.validate({
+            // 设置为可选项(有就更新,没有就过)
+            id: {type: "string"}
+            // 字段名: { type: '类型', required: false }, 
+        }, body)
+        let id = body.id 
+        body = {...this.ctx.helper._.pick(body, [
+            '需要的字段'
+        ])}
+        const {{name}}Service = this.service.{{name}}
+        // 有传入才校验,和旧数据相同的直接通过 
+        // if (body.password) {
+        //     // 密码加密
+        //     body.password = this.ctx.helper.md5(body.password)
+        // }
+        // 更新信息
+        const {{name}} = await {{name}}Service.update_{{name}}(id,body)
+        // 返回更新之后的信息
+        this.ctx.body = {
+            {{name}} 
+        }
+    } 
+    /**
+     * 删除
+     * */   
+    async delete_{{name}}() { 
+        // 请求体
+        const body = this.ctx.request.body
+        // 数据校验
+        this.ctx.validate({ 
+            // 字段名: { type: '类型'}, 
+            id: {type: "string"}
+        }, body)
+        const {{name}}Service = this.service.{{name}}
+        // 有传入才校验,和旧数据相同的直接通过 
+        // if (body.password) {
+        //     // 密码加密
+        //     body.password = this.ctx.helper.md5(body.password)
+        // }
+        // 删除信息
+        const {{name}} = await {{name}}Service.delete_{{name}}(body)
+        // 返回结果
+        this.ctx.status = 200
+    } 
+}
+module.exports = {{name}}Controller;

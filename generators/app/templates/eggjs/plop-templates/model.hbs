@@ -1,0 +1,26 @@
+module.exports = app => {
+    // egg-mongoose插件默认添加mongoose到app上
+    const mongoose = app.mongoose
+    // 数据库对象
+    const Schema = mongoose.Schema
+    const {{name}}Schema = new Schema({ 
+        /**
+            你自定义的表字段(不需要定义id,mongodb会自动生成)
+        */
+        // 创建时间
+        createdAt: {
+            type: Date,
+            default: Date.now
+        },
+        // 修改时间
+        updatedAt: {
+            type: Date,
+            default: Date.now
+        }
+    }) 
+    return mongoose.model(
+        // 这个首字母改大写
+        '{{name}}', 
+        {{name}}Schema
+    )
+}

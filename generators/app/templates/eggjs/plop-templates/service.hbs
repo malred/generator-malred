@@ -1,0 +1,50 @@
+const Service = require('egg').Service 
+class {{name}}Service extends Service {  
+    // 获取数据模型的方法
+    get {{name}}() {
+        // 这里的{{name}}改成首字母大写
+        return this.app.model.{{name}}
+    }
+    /**
+     * 查找所有 {{name}}  
+     * @returns 用户实例
+     */
+    async findAll() {
+        return await this.{{name}}.find()
+    } 
+    /**
+     * 新增 {{name}} 
+     */
+    async create_{{name}}(data) {
+        // 如果需要加密
+        // 从helper里获取工具类,进行密码加盐
+        // data.password = this.ctx.helper.md5(data.password)
+        // 接收参数,封装为{{name}}对象
+        const {{name}} = new this.{{name}}(data)
+        await {{name}}.save()
+        return {{name}}
+    } 
+    /**
+     * 更新 {{name}}
+     * @param {id} id 
+     * @param {更新的数据} data 
+     * @returns 返回更新的结果
+     */
+    update_{{name}}(id,data) {
+        // 参数1: id
+        // 参数2: 更新的数据
+        return this.{{name}}.findByIdAndUpdate( id, data, {
+            // 默认返回更新前的数据,设置这个返回更新后的数据
+            new: true,
+        })
+    } 
+    /**
+     * 删除 {{name}}
+     * @param {id} id  
+     */
+    async delete_{{name}}(id) {
+        // 参数1: id 
+        await this.{{name}}.findByIdAndDelete(id)
+    } 
+}
+module.exports = {{name}}Service
